@@ -1,0 +1,7 @@
+data/images/
+dlc_project/labeled-data/
+dlc_project/dlc-models-pytorch/
+dlc_project/training-datasets/
+__pycache__/
+*.pyc
+dlc_project/videos/

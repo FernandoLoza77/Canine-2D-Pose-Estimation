@@ -1,0 +1,95 @@
+# Config schema version. Do not edit manually.
+config_version: 0
+# Project definitions (do not edit)
+Task: Dog_pose_detection
+scorer: Fernando Loza
+date: Oct29
+multianimalproject: false
+identity:
+
+# Project path (change when moving around)
+project_path: C:\Users\usuario\Desktop\UADY\SemestreAgostoDiciembre2026\Practicas\Canine-2D-Pose-Estimation\Dog_pose_detection-Fernando Loza-2026-10-29
+pose_config_path:
+
+# Default DeepLabCut engine to use for shuffle creation (either pytorch or tensorflow)
+engine: pytorch
+
+# Annotation data set configuration (and individual video cropping parameters)
+video_sets:
+  ? C:\Users\usuario\Desktop\UADY\SemestreAgostoDiciembre2026\Practicas\Canine-2D-Pose-Estimation\Dog_pose_detection-Fernando Loza-2026-10-29\videos\perroPaseando.mp4
+  : crop: 0, 1920, 0, 1080
+bodyparts:
+- left_front_paw
+- left_front_knee
+- left_front_top
+- left_rear_paw
+- left_rear_knee
+- left_rear_top
+- right_front_paw
+- right_front_knee
+- right_front_top
+- right_rear_paw
+- right_rear_knee
+- right_rear_top
+- tail_start
+- tail_end
+- left_ear_base
+- right_ear_base
+- nose
+- chin
+- left_ear_tip
+- right_ear_tip
+- left_eye
+- right_eye
+- withers
+- throat
+individuals:
+- individual_1
+uniquebodyparts: []
+multianimalbodyparts: []
+
+# Fraction of video to start/stop when extracting frames for labeling/refinement
+start: 0.0
+stop: 1.0
+numframes2pick: 20
+
+# Plotting configuration
+skeleton: []
+skeleton_color: black
+pcutoff: 0.6
+dotsize: 12
+alphavalue: 0.7
+colormap: rainbow
+
+# Training,Evaluation and Analysis configuration
+TrainingFraction:
+- 0.95
+iteration: 0
+default_net_type: resnet_50
+default_augmenter: default
+default_track_method:
+snapshotindex: -1
+detector_snapshotindex: -1
+batch_size: 8
+detector_batch_size: 1
+
+# Cropping Parameters (for analysis and outlier frame detection)
+cropping: false
+# if cropping is true for analysis, then set the values here:
+x1: 0
+x2: 640
+y1: 277
+y2: 624
+
+# Refinement configuration (parameters from annotation dataset configuration also relevant in this stage)
+corner2move2:
+- 50
+- 50
+move2corner: true
+
+# Conversion tables to fine-tune SuperAnimal weights
+SuperAnimalConversionTables:
+
+# These are very old parameters that are no longer used They are simply ignored.
+resnet:
+croppedtraining:
