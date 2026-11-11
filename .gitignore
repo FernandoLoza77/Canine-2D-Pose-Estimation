@@ -5,3 +5,8 @@ dlc_project/training-datasets/
 __pycache__/
 *.pyc
 dlc_project/videos/
+dlc_project_3breeds/labeled-data/
+dlc_project_3breeds/dlc-models/
+dlc_project_3breeds/dlc-models-pytorch/
+dlc_project_3breeds/training-datasets/
+dlc_project_3breeds/videos/

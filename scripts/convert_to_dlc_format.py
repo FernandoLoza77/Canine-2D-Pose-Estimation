@@ -37,7 +37,9 @@ def convert_to_dlc_format(loaded_data, bodypart_names, scorer, source_images_dir
             print(f"Aviso: no se encontro {source_image}, se omite.")
             continue
 
-        shutil.copy2(source_image, dest_dir / image_filename)
+        dest_image = dest_dir / image_filename
+        if not dest_image.exists() or dest_image.stat().st_size != source_image.stat().st_size:
+            shutil.copy2(source_image, dest_image)
 
         coords = []
         for nombre in bodypart_names:
