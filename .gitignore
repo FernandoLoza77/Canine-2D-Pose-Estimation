@@ -10,3 +10,10 @@ dlc_project_3breeds/dlc-models/
 dlc_project_3breeds/dlc-models-pytorch/
 dlc_project_3breeds/training-datasets/
 dlc_project_3breeds/videos/
+dlc_project_12breeds/labeled-data/
+dlc_project_12breeds/dlc-models/
+dlc_project_12breeds/dlc-models-pytorch/
+dlc_project_12breeds/training-datasets/
+dlc_project_12breeds/evaluation-results-pytorch/
+dlc_project_12breeds/videos/
+dlc_project_3breeds/evaluation-results-pytorch/
