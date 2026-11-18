@@ -1,0 +1,2 @@
+# Versiones con las que se probo (Python 3.12). Instala PyTorch primero, ver README.
+deeplabcut==3.0.1

@@ -11,7 +11,7 @@ from pathlib import Path
 import deeplabcut
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-CONFIG = REPO_ROOT / "dlc_project_3breeds" / "config.yaml"
+CONFIG = REPO_ROOT / "dlc_project_12breeds" / "config.yaml"
 DEFAULT_VIDEO = REPO_ROOT.parent / "perroPaseando.mp4"
 
 if __name__ == "__main__":
