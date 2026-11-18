@@ -70,8 +70,6 @@ analizado; por eso el video se reduce a 2 fps. Un video de 1 minuto son ~120 fra
 - Los umbrales se eligieron mirando **los mismos 4 videos** con los que se probó
   (97 % de frames bien: 85 de 88; los 3 restantes quedaron como "desconocida"). Ese
   número **no es una validación independiente**.
-- Los videos de prueba parecen generados por IA (un perro, vista lateral, cuarto
-  limpio). Falta probar con perros reales, otros ángulos y razas de pelo oscuro.
 - Pensado para **un solo perro** y **vista lateral**; con dos perros o vista frontal /
   desde arriba los resultados pueden ser incorrectos.
 - No distingue otras posturas (por ejemplo "echado de lado" frente a "echado boca abajo").
