@@ -74,6 +74,45 @@ def segmentos(linea: pd.DataFrame, seg_por_frame: float):
     return res
 
 
+COLORES = {  # BGR
+    "acostado": (200, 120, 0),
+    "sentado": (0, 140, 255),
+    "parado": (60, 160, 60),
+    "desconocida": (120, 120, 120),
+}
+
+
+def anotar_video(origen: Path, destino: Path, posturas: list, seg_por_frame: float) -> None:
+    """Copia `origen` escribiendo en cada frame la postura detectada y el tiempo."""
+    cap = cv2.VideoCapture(str(origen))
+    fps = cap.get(cv2.CAP_PROP_FPS) or (1.0 / seg_por_frame)
+    ancho = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    alto = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    out = cv2.VideoWriter(str(destino), cv2.VideoWriter_fourcc(*"mp4v"), fps, (ancho, alto))
+    escala = max(0.6, ancho / 900)
+    grosor = max(1, round(escala * 2))
+    i = 0
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+        post = posturas[min(i, len(posturas) - 1)]
+        texto = post.upper()
+        (tw, th), base = cv2.getTextSize(texto, cv2.FONT_HERSHEY_SIMPLEX, escala * 1.4, grosor + 1)
+        m = int(10 * escala)
+        cv2.rectangle(frame, (0, 0), (tw + 2 * m, th + base + 2 * m), COLORES.get(post, (120, 120, 120)), -1)
+        cv2.putText(frame, texto, (m, th + m), cv2.FONT_HERSHEY_SIMPLEX, escala * 1.4,
+                    (255, 255, 255), grosor + 1, cv2.LINE_AA)
+        pos_t = (m, th + base + 2 * m + int(30 * escala))
+        txt_t = f"{i * seg_por_frame:5.1f} s"
+        for color, g in (((0, 0, 0), grosor + 3), ((255, 255, 255), grosor)):  # borde negro + texto blanco
+            cv2.putText(frame, txt_t, pos_t, cv2.FONT_HERSHEY_SIMPLEX, escala * 0.8, color, g, cv2.LINE_AA)
+        out.write(frame)
+        i += 1
+    cap.release()
+    out.release()
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("video", type=Path)
@@ -117,6 +156,13 @@ def main():
     csv = carpeta / f"{video.stem}_postura.csv"
     linea.to_csv(csv, index=False)
 
+    video_postura = None
+    if not args.sin_video:
+        etiquetado = sorted(dlc_dir.glob("*labeled*.mp4"))
+        origen = etiquetado[0] if etiquetado else reducido  # con puntos si existe
+        video_postura = carpeta / f"{video.stem}_postura.mp4"
+        anotar_video(origen, video_postura, linea["postura"].tolist(), seg_por_frame)
+
     print(f"\nResultado para {video.name}  ({len(linea)} frames analizados)")
     for post, n in linea["postura"].value_counts().items():
         print(f"  {post:12s} {n / len(linea) * 100:5.1f}% del tiempo")
@@ -124,6 +170,8 @@ def main():
     for post, a, b in segmentos(linea, seg_por_frame):
         print(f"  {a:6.1f}s - {b:6.1f}s  {post}")
     print(f"\nCSV: {csv}")
+    if video_postura:
+        print(f"Video con la postura: {video_postura}")
 
 
 if __name__ == "__main__":

@@ -32,8 +32,11 @@ pip install -r requirements.txt
 ## Uso
 
 ```bash
-python scripts/detectar_postura.py ruta/al/video.mp4
+python scripts/detectar_postura.py "C:\ruta\completa\a\tu_video.mp4"
 ```
+
+Reemplaza la ruta por la de tu video (entre comillas si tiene espacios). Formatos
+habituales: `.mp4`, `.avi`, `.mov`.
 
 Opciones: `--fps 1` (frames por segundo a analizar, por defecto 2), `--salida carpeta`
 (por defecto `resultados/`), `--sin-video` (no genera el video con los puntos).
