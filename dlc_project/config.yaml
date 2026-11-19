@@ -8,7 +8,7 @@ multianimalproject: false
 identity:
 
 # Project path (change when moving around)
-project_path: C:\Users\usuario\Desktop\UADY\SemestreAgostoDiciembre2026\Practicas\Canine-2D-Pose-Estimation\Dog_pose_detection-Fernando Loza-2026-10-29
+project_path: C:\Users\usuario\Desktop\UADY\SemestreAgostoDiciembre2026\Practicas\canine-2D-pose-estimation\dlc_project
 pose_config_path:
 
 # Default DeepLabCut engine to use for shuffle creation (either pytorch or tensorflow)
@@ -16,7 +16,7 @@ engine: pytorch
 
 # Annotation data set configuration (and individual video cropping parameters)
 video_sets:
-  ? C:\Users\usuario\Desktop\UADY\SemestreAgostoDiciembre2026\Practicas\Canine-2D-Pose-Estimation\Dog_pose_detection-Fernando Loza-2026-10-29\videos\perroPaseando.mp4
+  ? C:\Users\usuario\Desktop\UADY\SemestreAgostoDiciembre2026\Practicas\canine-2D-pose-estimation\dlc_project\videos\perroPaseando.mp4
   : crop: 0, 1920, 0, 1080
 bodyparts:
 - left_front_paw
